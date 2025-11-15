@@ -1,181 +1,338 @@
+# g4f website
 
-# Template Academy - WordPress Theme
+A sophisticated Django-powered chat application with AI integration, multilingual support, and advanced features for enhanced user experience.
 
-<p align="left">
-	<a href="https://wordpress.org/" target="_blank"><img src="https://img.shields.io/badge/WordPress-6.0%2B-blue?logo=wordpress&logoColor=white" alt="WordPress"></a>
-	<a href="https://www.php.net/" target="_blank"><img src="https://img.shields.io/badge/PHP-8.0%2B-777bb4?logo=php&logoColor=white" alt="PHP"></a>
-	<a href="https://www.mysql.com/" target="_blank"><img src="https://img.shields.io/badge/MySQL-5.7%2B-4479A1?logo=mysql&logoColor=white" alt="MySQL"></a>
-	<a href="https://github.com/levak/education-platform/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/badge/License-GPL%20v2%2B-green?logo=open-source-initiative&logoColor=white" alt="License"></a>
-	<img src="https://img.shields.io/badge/Status-Active-brightgreen?logo=github" alt="Status">
-</p>
+## 🚀 Key Features
 
+### 💬 Advanced Chat System
+- **Multi-Model AI Support**: Integration with GPT-4, GPT-4o, Gemini, Qwen, DeepSeek models
+- **Real-time Messaging**: WebSocket support for instant communication
+- **Message History**: Persistent chat sessions with automatic saving
+- **Chat Management**: Rename, delete, and organize conversations
+- **Export Functionality**: Download chat history in various formats
 
-Шаблон для образовательной платформы с системой курсов, модулей, уроков и отслеживанием прогресса.
+### 🤖 AI Capabilities
+- **Multiple AI Providers**: Automatic provider switching for reliability
+- **Image Generation**: AI-powered image creation capabilities
+- **Image Upload & Analysis**: Upload images for AI analysis
+- **Model Selection**: Choose from various AI models based on your needs
+- **Smart Responses**: Context-aware AI responses with memory
 
-## Требования
+### 🌍 Internationalization
+- **Multi-language Support**: Russian, English, Belarusian, Ukrainian
+- **Dynamic Language Switching**: Change language without page reload
+- **Localized Content**: Full interface translation including legal documents
 
-- WordPress 6.0+
-- PHP 8.0+
-- MySQL 5.7+
+### 🔐 Security & Authentication
+- **Google OAuth 2.0**: Secure authentication with Google accounts
+- **User Profiles**: Personalized user experience
+- **Data Privacy**: Comprehensive privacy controls
+- **Secure API**: Protected endpoints with CSRF protection
 
-## Установка
+### 📊 User Analytics
+- **Usage Statistics**: Track messages, chats, and activity levels
+- **Achievement System**: Gamified experience with unlockable achievements
+- **Progress Tracking**: Monitor your engagement and growth
+- **Export Statistics**: Download your usage data
 
-1. Скопируйте папку `template` в `wp-content/themes/`
-2. В админ-панели WordPress перейдите в **Внешний вид → Темы**
-3. Активируйте тему **Template Academy**
+### 📝 Notion Integration
+- **Seamless Sync**: Save chat conversations directly to Notion
+- **Page Selection**: Choose specific Notion pages for saving
+- **Auto-formatting**: Properly formatted notes in Notion
+- **API Configuration**: Easy setup with Notion API
 
-## Структура темы
+### 🎨 User Experience
+- **Responsive Design**: Mobile-first responsive interface
+- **Dark/Light Themes**: Customizable appearance
+- **Font Size Control**: Adjustable text size for accessibility
+- **Touch-friendly**: Optimized for mobile and tablet use
+
+### ⚙️ Advanced Settings
+- **Data Management**: Export or delete all user data
+- **Privacy Controls**: Granular privacy settings
+- **Model Training**: Opt-in/opt-out for model improvement
+- **Account Management**: Complete account control
+
+## 🛠️ Technology Stack
+
+- **Backend**: Django 4.2.7 with Django Channels
+- **Database**: PostgreSQL with optimized queries
+- **Frontend**: Vanilla JavaScript, CSS3, HTML5
+- **Authentication**: Google OAuth 2.0, Django Social Auth
+- **AI Integration**: g4f library, multiple AI providers
+- **Real-time**: WebSocket for live chat
+- **Deployment**: Production-ready with proper logging
+
+## 📋 Prerequisites
+
+- Python 3.8+
+- PostgreSQL 12+
+- Git
+- Google Cloud Account (for OAuth)
+- Notion Account (optional, for integration)
+
+## 🔧 Installation
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/theknyazzev/g4f-website.git
+cd g4f-website/premium_chat
+```
+
+### 2. Set Up Virtual Environment
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Database Setup
+```bash
+# Install PostgreSQL and create database
+createdb premium_chat_db
+
+# Or using PostgreSQL prompt:
+psql -U postgres
+CREATE DATABASE premium_chat_db;
+\q
+```
+
+### 5. Environment Configuration
+Create a `.env` file in the project root:
+```env
+# Django Settings
+SECRET_KEY=your-super-secret-key-here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# Database Configuration
+DATABASE_URL=postgresql://username:password@localhost:5432/premium_chat_db
+
+# Google OAuth 2.0
+GOOGLE_OAUTH2_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_OAUTH2_CLIENT_SECRET=your-google-client-secret
+
+# Notion Integration (Optional)
+NOTION_TOKEN=secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# AI Service Configuration (Optional)
+OPENAI_API_KEY=your-openai-api-key-if-needed
+
+# Security
+CSRF_TRUSTED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
+```
+
+### 6. Database Migration
+```bash
+# Apply migrations
+python manage.py migrate
+
+# Create superuser (optional)
+python manage.py createsuperuser
+```
+
+### 7. Collect Static Files
+```bash
+python manage.py collectstatic
+```
+
+### 8. Run Development Server
+```bash
+python manage.py runserver
+```
+
+Visit `http://localhost:8000` to access the application.
+
+## ⚙️ Configuration
+
+### Google OAuth Setup
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing one
+3. Enable Google+ API and OAuth 2.0
+4. Create OAuth 2.0 credentials:
+   - Application type: Web application
+   - Authorized redirect URIs: `http://localhost:8000/auth/complete/google-oauth2/`
+5. Copy Client ID and Client Secret to your `.env` file
+
+### Notion Integration Setup
+1. Visit [Notion Integrations](https://www.notion.so/my-integrations)
+2. Create new internal integration
+3. Copy the Integration Token
+4. Share your Notion page with the integration
+5. Add token to `.env` file
+
+### AI Models Configuration
+The application supports multiple AI providers:
+- **GPT Models**: GPT-4, GPT-4o, GPT-4o Mini
+- **Gemini Models**: Gemini 1.5 Pro, Gemini 1.5 Flash
+- **Qwen Models**: Qwen 2.5 Max, Qwen 2.5, Qwen 3
+- **DeepSeek Models**: DeepSeek R1
+
+No additional API keys required for basic functionality.
+
+## 📁 Project Structure
 
 ```
-template/
-├── assets/
-│   ├── css/
-│   │   └── main.css                 # Основные стили
-│   └── js/
-│       ├── main.js                  # Инициализация
-│       ├── progress-tracker.js      # Отслеживание прогресса
-│       ├── quiz.js                  # Система тестов
-│       ├── calendar.js              # Календарь
-│       └── file-upload.js           # Загрузка файлов
-├── inc/
-│   ├── post-types.php               # Custom Post Types
-│   ├── user-progress.php            # Прогресс пользователя
-│   ├── ajax-handlers.php            # AJAX обработчики
-│   ├── quiz-system.php              # Система тестов
-│   ├── file-manager.php             # Управление файлами
-│   └── helpers.php                  # Вспомогательные функции
-├── functions.php                    # Главный файл функций
-├── style.css                        # Информация о теме
-├── header.php                       # Шапка сайта
-├── footer.php                       # Подвал сайта
-├── index.php                        # Список курсов
-├── single-ak_course.php             # Модули курса
-├── single-ak_module.php             # Уроки модуля
-├── single-ak_lesson.php             # Страница урока
-└── page-documents.php               # Страница документов
+premium_chat/
+├── chat_app/                    # Main Django application
+│   ├── migrations/             # Database migrations
+│   ├── management/             # Custom management commands
+│   ├── models.py              # Database models
+│   ├── views.py               # View controllers
+│   ├── consumers.py           # WebSocket consumers
+│   ├── gpt_service.py         # AI service integration
+│   ├── notion_service.py      # Notion API integration
+│   ├── serializers.py         # API serializers
+│   ├── signals.py             # Django signals
+│   └── urls.py                # URL routing
+├── chat_project/               # Django project settings
+│   ├── settings.py            # Main settings
+│   ├── urls.py                # Root URL configuration
+│   ├── asgi.py                # ASGI configuration
+│   └── wsgi.py                # WSGI configuration
+├── static/                     # Static files
+│   ├── styles.css             # Main stylesheet
+│   ├── script.js              # Main JavaScript
+│   ├── translations.js        # Internationalization
+│   ├── privacy_policy.json    # Privacy policy content
+│   └── terms_of_service.json  # Terms of service content
+├── templates/                  # HTML templates
+│   └── index.html             # Main application template
+├── logs/                       # Application logs
+├── manage.py                   # Django management script
+├── requirements.txt            # Python dependencies
+├── .env.example               # Environment variables example
+├── .gitignore                 # Git ignore rules
+└── README.md                  # This file
 ```
 
-## Использование
+## 🔌 API Endpoints
 
-### Создание курса
+### Chat API
+- `POST /api/chat/send/` - Send message to AI
+- `GET /api/chat/history/` - Get chat history
+- `POST /api/chat/rename/` - Rename chat session
+- `DELETE /api/chat/delete/{id}/` - Delete chat session
 
-1. В админ-панели перейдите в **Курсы → Добавить новый**
-2. Заполните название и описание курса
-3. Добавьте изображение курса (миниатюра)
-4. Опубликуйте курс
+### User API
+- `GET /api/user/profile/` - Get user profile
+- `POST /api/user/stats/` - Get user statistics
+- `POST /api/user/settings/` - Update user settings
 
-### Создание модуля
+### Notion API
+- `POST /api/notion/save/` - Save chat to Notion
+- `GET /api/notion/pages/` - Get available Notion pages
+- `POST /api/notion/test/` - Test Notion connection
 
-1. Перейдите в **Модули → Добавить новый**
-2. Заполните название и описание модуля
-3. В правой панели выберите **Курс**, к которому относится модуль
-4. Опубликуйте модуль
+### Authentication API
+- `GET /auth/login/google-oauth2/` - Google OAuth login
+- `POST /auth/logout/` - User logout
 
-### Создание урока
+## 🎯 Usage Guide
 
-1. Перейдите в **Уроки → Добавить новый**
-2. Заполните название и содержание урока
-3. В правой панели выберите **Модуль**, к которому относится урок
+### Basic Chat
+1. Open the application in your browser
+2. Sign in with Google (optional but recommended)
+3. Start typing in the chat input
+4. Select AI model from dropdown (or use Auto mode)
+5. Send messages and receive AI responses
 
-#### Добавление видео
+### Image Features
+1. Click the image actions button (📷)
+2. Choose "Upload Image" to analyze existing images
+3. Choose "Generate Image" to create new images with AI
+4. Images can be viewed in full size by clicking
 
-В метабоксе "Видео урока":
-- Выберите тип видео (YouTube, Vimeo или MP4)
-- Для YouTube/Vimeo: вставьте URL видео
-- Для MP4: нажмите "Загрузить" и выберите файл
+### Notion Integration
+1. Go to Settings → Integrations → Notion
+2. Follow the setup instructions to get API key
+3. Enter API key and select target Notion page
+4. Save messages to Notion using the save button
 
-#### Добавление тестов
+### Multi-language Support
+1. Go to Settings → Language
+2. Select your preferred language
+3. Interface will update immediately
 
-В метабоксе "Тесты урока":
-1. Нажмите **"Добавить вопрос"**
-2. Введите текст вопроса
-3. Заполните 4 варианта ответов
-4. Отметьте радио-кнопку у правильного ответа
-5. Можно добавить несколько вопросов
+## 🚀 Deployment
 
-### Страница документов
+### Production Settings
+1. Set `DEBUG=False` in production
+2. Configure proper `ALLOWED_HOSTS`
+3. Use environment variables for sensitive data
+4. Set up SSL/HTTPS
+5. Configure proper logging
+6. Use production database settings
 
-Создайте новую страницу в WordPress:
-1. **Страницы → Добавить новую**
-2. Название: "Документы"
-3. Шаблон: выберите **"Documents"**
-4. Опубликуйте страницу
+### Docker Deployment (Optional)
+```dockerfile
+FROM python:3.11
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+```
 
-Пользователи смогут загружать документы (PDF, DOCX, PPTX, ZIP) и удалять их.
+## 🤝 Contributing
 
-### Главная страница
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Make your changes
+4. Add tests if applicable
+5. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+6. Push to the branch (`git push origin feature/AmazingFeature`)
+7. Open a Pull Request
 
-Создайте страницу для списка курсов:
-1. **Страницы → Добавить новую**
-2. Название: "Обучение"
-3. Используйте шаблон по умолчанию
-4. В **Настройки → Чтение** установите эту страницу как главную
+### Development Guidelines
+- Follow PEP 8 style guide
+- Add docstrings to functions and classes
+- Write tests for new features
+- Update documentation as needed
 
-## Функционал
+## 📝 License
 
-### Автоматическое отслеживание прогресса
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- При открытии урока он автоматически отмечается как "пройденный"
-- Прогресс сохраняется индивидуально для каждого пользователя
-- Расчет процента выполнения курса/модуля
+## 🆘 Support
 
-### Система тестов
+### Troubleshooting
+- **Database connection issues**: Check PostgreSQL service and credentials
+- **Google OAuth errors**: Verify client ID and redirect URIs
+- **Notion integration fails**: Ensure proper API key and page permissions
+- **AI responses not working**: Check internet connection and try different models
 
-- Интерактивные тесты с выбором одного правильного ответа
-- Визуальная индикация правильных/неправильных ответов
-- Сохранение результатов пользователя
-- Подсчет выполненных заданий
+### Getting Help
+- Open an issue on GitHub for bugs
+- Check existing issues for solutions
+- Review documentation for setup questions
 
-### Календарь
+## 🔮 Roadmap
 
-- Выдвижная панель справа
-- Открывается по клику на "Календарь" в навигации
-- Показывает текущий месяц
+- [ ] Voice message support
+- [ ] Advanced AI model fine-tuning
+- [ ] Team collaboration features
+- [ ] Plugin system for extensions
+- [ ] Mobile app development
+- [ ] Advanced analytics dashboard
 
-### Загрузка документов
+## 📞 Contact
 
-- Поддержка форматов: PDF, DOCX, PPTX, ZIP
-- Просмотр списка загруженных документов
-- Возможность скачивания и удаления
+- **GitHub**: [@theknyazzev](https://github.com/theknyazzev)
+- **Email**: theknyazzev@gmail.com
+- **Project**: [g4f website](https://github.com/theknyazzev/g4f-website)
 
-## Дизайн
+---
 
-Тема использует минималистичный черно-белый дизайн:
-- **Основной цвет**: Черный (#000000)
-- **Фон**: Белый (#FFFFFF)
-- **Акценты**: Светло-серый (#F5F5F5)
-
-Полностью адаптивный дизайн для всех устройств (desktop, tablet, mobile).
-
-## Технические детали
-
-### Custom Post Types
-
-- `ak_course` - Курсы
-- `ak_module` - Модули
-- `ak_lesson` - Уроки
-
-### User Meta
-
-- `ak_user_progress` - Прогресс пользователя по курсам
-- `ak_quiz_results` - Результаты тестов
-- `ak_user_documents` - Загруженные документы
-
-### AJAX Endpoints
-
-- `ak_mark_lesson_completed` - Отметить урок как пройденный
-- `ak_submit_quiz_answer` - Отправить ответ на тест
-- `ak_upload_document` - Загрузить документ
-- `ak_delete_document` - Удалить документ
-
-## Поддержка
-
-Тема использует:
-- Lucide Icons (CDN): https://lucide.dev
-- Vanilla JavaScript + jQuery
-- HTML5 video player
-- WordPress Media Library
-
-## Лицензия
-
-GPL v2 или выше
+**Built with ❤️ using Django and modern web technologies**
