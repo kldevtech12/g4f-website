@@ -318,21 +318,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Check existing issues for solutions
 - Review documentation for setup questions
 
-## 🔮 Roadmap
-
-- [ ] Voice message support
-- [ ] Advanced AI model fine-tuning
-- [ ] Team collaboration features
-- [ ] Plugin system for extensions
-- [ ] Mobile app development
-- [ ] Advanced analytics dashboard
-
-## 📞 Contact
-
-- **GitHub**: [@theknyazzev](https://github.com/theknyazzev)
-- **Email**: theknyazzev@gmail.com
-- **Project**: [g4f website](https://github.com/theknyazzev/g4f-website)
-
----
-
 **Built with ❤️ using Django and modern web technologies**
